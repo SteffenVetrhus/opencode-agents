@@ -1,6 +1,7 @@
 ---
-description: Senior solution architect
-model: claude-sonnet-4-5
+name: arch
+description: Senior solution architect for complexity assessment and phased delivery planning
+model: sonnet
 temperature: 0.4
 thinking:
   type: enabled

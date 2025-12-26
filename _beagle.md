@@ -1,7 +1,8 @@
 ---
+name: beagle
 description: Virtual hunting dog researcher that tracks down information across the web
+model: sonnet
 temperature: 0.4
-model: claude-sonnet-4-5
 thinking:
   type: enabled
 permission:

@@ -1,7 +1,8 @@
 ---
-description: Maximally creative agent. Uses advanced prompt engineering for literary, engaging content.
+name: writer
+description: Maximally creative agent for narrative-driven content and documentation
+model: sonnet
 temperature: 1
-model: claude-sonnet-4-5
 thinking:
   type: enabled
 permission:

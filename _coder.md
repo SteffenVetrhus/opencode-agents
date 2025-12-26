@@ -1,6 +1,7 @@
 ---
+name: coder
 description: Autonomous coding agent capable of solving complex programming tasks independently
-model: claude-sonnet-4-5
+model: sonnet
 temperature: 0.2
 thinking:
   type: enabled

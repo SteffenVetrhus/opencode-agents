@@ -16,6 +16,15 @@ A collection of specialized AI agents designed for Claude Code. Each agent is op
 
 These agents are designed to work with Claude Code. Place the agent definition files in your Claude Code agents directory.
 
+### Quick Start for Windows
+
+1. Open PowerShell (Win+X, then select "Windows PowerShell" or "Terminal")
+2. Run the installation script below
+3. Restart Claude Code if it's already running
+4. Use `/agents` command to verify installation
+
+### Detailed Installation Instructions
+
 **Linux/macOS:**
 
 ```bash
@@ -57,19 +66,33 @@ Simply clone this repository and copy the `_*.md` files to your Claude Code agen
 
 ## Features
 
-- **Claude Sonnet 4.5 Optimized**: All agents use the latest Claude Sonnet 4.5 model for maximum performance
+- **Claude Sonnet Optimized**: All agents use Claude Sonnet model for optimal performance
 - **Extended Reasoning**: Enabled thinking mode for deep analysis and problem-solving
 - **Flexible Permissions**: Each agent has customized permissions appropriate for its role
 - **English-First**: All documentation and examples in English for clarity and consistency
+- **Platform Agnostic**: Works identically on Windows, macOS, and Linux
 
 ## Usage
 
-After installation, these agents will be available in your Claude Code environment. You can switch between agents based on the task at hand:
+After installation, these agents will be available in your Claude Code environment.
 
-- Use `_arch` for architectural planning and system design
-- Use `_beagle` for research and information gathering
-- Use `_coder` for autonomous coding tasks
-- Use `_writer` for creative writing and documentation
+**To view and manage agents:**
+```
+/agents
+```
+
+**To use a specific agent:**
+Just mention it in your request, for example:
+- "Use the arch agent to design this system"
+- "Have the beagle agent research this topic"
+- "Use coder to implement this feature"
+- "Let writer create documentation for this"
+
+**Agent Selection Guide:**
+- `arch` - Architectural planning, complexity assessment, phased delivery
+- `beagle` - Research, information gathering, source verification
+- `coder` - Autonomous coding, debugging, refactoring, testing
+- `writer` - Creative writing, narrative documentation, content creation
 
 ## Agents
 
@@ -98,3 +121,58 @@ Delivers three things. Main conclusion—a brief answer to the query with recomm
 A writer with a narrative system. Before writing each sentence, goes through six phases of thinking, defining why the text exists, what path the reader will take, where questions will arise, and where the insight will strike.
 
 Output is always in the language of the query, thinking is in English. The result reads as if written by a thoughtful person.
+
+---
+
+## Troubleshooting
+
+### Windows-Specific Issues
+
+**Agents not appearing in `/agents` list:**
+1. Verify the files are in the correct directory:
+   ```powershell
+   dir $env:USERPROFILE\.claude\agents\
+   ```
+   You should see: `_arch.md`, `_beagle.md`, `_coder.md`, `_writer.md`
+
+2. Check file encoding (must be UTF-8):
+   ```powershell
+   Get-Content $env:USERPROFILE\.claude\agents\_arch.md -Encoding UTF8
+   ```
+
+3. Restart Claude Code completely (close and reopen)
+
+**PowerShell script execution blocked:**
+If you get an execution policy error, run:
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+**Path issues:**
+- Use `~\.claude\agents\` in PowerShell (~ expands to your user profile)
+- Or use full path: `C:\Users\YourUsername\.claude\agents\`
+- Ensure `.claude` directory exists (note the leading dot)
+
+### General Troubleshooting
+
+**Agent not working as expected:**
+1. Check the YAML frontmatter is valid (proper indentation, no tabs)
+2. Verify the `name` field matches the agent name you're invoking
+3. Try using the exact name: "Use the `arch` agent" or "Switch to `coder` agent"
+
+**Permissions errors:**
+Each agent has different permission settings. If an agent asks for permission unexpectedly:
+- `arch` - Has extended thinking, may ask for file operations
+- `beagle` - Asks before editing/writing/bash commands
+- `coder` - Has full edit/write/read permissions
+- `writer` - Asks for edit/write, bash commands denied
+
+---
+
+## Contributing
+
+Contributions are welcome! Feel free to submit issues or pull requests to improve these agents.
+
+## License
+
+These agent definitions are provided as-is for use with Claude Code.
