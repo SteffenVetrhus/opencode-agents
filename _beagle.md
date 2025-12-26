@@ -1,7 +1,7 @@
 ---
 description: Virtual hunting dog researcher that tracks down information across the web
 temperature: 0.4
-model: zai-coding-plan/glm-4.7
+model: claude-sonnet-4-5
 thinking:
   type: enabled
 permission:

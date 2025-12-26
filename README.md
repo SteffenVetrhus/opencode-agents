@@ -1,80 +1,100 @@
-<p align="center">
-  <a href="README.md">🇷🇺 Русский</a> · <a href="README.en.md">🇬🇧 English</a> · <a href="README.zh.md">🇨🇳 中文</a>
-</p>
-
 # OpenCode Agents
 
-Все модели писались и тестировались из расчета на GLM4.6/GLM4.7
-
-В особенности под Coding Plan подписку без ограничений на токены.
+A collection of specialized AI agents designed for Claude Code. Each agent is optimized for specific tasks using Claude's advanced reasoning capabilities.
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/veschin/opencode-agents/refs/heads/main/logo.svg" width="512" alt="OpenCode Agents Logo">
 </p>
 
 <p align="center">
-  <em>"Репозиторий с .md-файлами... но каждый файл — это нейродегенерат."</em>
+  <em>"A repository with .md files... but each file is a neurodivergent."</em>
 </p>
 
 ---
 
-## Установка
+## Installation
+
+These agents are designed to work with Claude Code. Place the agent definition files in your Claude Code agents directory.
 
 **Linux/macOS:**
 
 ```bash
-# Создаём директорию агентов
-mkdir -p ~/.config/opencode/agent/
+# Create the agents directory for Claude Code
+mkdir -p ~/.claude/agents/
 
-# Загружаем только файлы агентов через GitHub API
-curl -s "https://api.github.com/repos/veschin/opencode-agents/contents" | \
+# Download agent files
+curl -s "https://api.github.com/repos/SteffenVetrhus/opencode-agents/contents" | \
   jq -r '.[] | select(.name | startswith("_") and endswith(".md")) | "\(.name)\t\(.download_url)"' | \
-  while IFS=$'\t' read -r name url; do curl -s "$url" -o ~/.config/opencode/agent/"$name"; done
+  while IFS=$'\t' read -r name url; do curl -s "$url" -o ~/.claude/agents/"$name"; done
 ```
 
-*Требуется jq для обработки JSON. Установите через `sudo apt install jq` (Ubuntu/Debian), `brew install jq` (macOS), или `pacman -S jq` (Arch).*
+*Requires jq for JSON processing. Install via `sudo apt install jq` (Ubuntu/Debian), `brew install jq` (macOS), or `pacman -S jq` (Arch).*
 
 **Windows (PowerShell):**
 
 ```powershell
-# Создаём директорию агентов
-$agentDir = Join-Path $env:USERPROFILE ".config\opencode\agent"
+# Create the agents directory for Claude Code
+$agentDir = Join-Path $env:USERPROFILE ".claude\agents"
 if (-not (Test-Path $agentDir)) {
     New-Item -ItemType Directory -Path $agentDir -Force | Out-Null
 }
 
-# Загружаем только файлы агентов через GitHub API
-$response = Invoke-RestMethod -Uri "https://api.github.com/repos/veschin/opencode-agents/contents"
+# Download agent files
+$response = Invoke-RestMethod -Uri "https://api.github.com/repos/SteffenVetrhus/opencode-agents/contents"
 $response | Where-Object { $_.name -like '_*.md' } | ForEach-Object {
     $content = Invoke-RestMethod -Uri $_.download_url
     $path = Join-Path $agentDir $_.name
     $content | Out-File -FilePath $path -Encoding UTF8
-    Write-Host "Downloading $($_.name)..."
+    Write-Host "Downloaded $($_.name)"
 }
 ```
 
+**Manual Installation:**
+
+Simply clone this repository and copy the `_*.md` files to your Claude Code agents directory:
+- Linux/macOS: `~/.claude/agents/`
+- Windows: `%USERPROFILE%\.claude\agents\`
+
+## Features
+
+- **Claude Sonnet 4.5 Optimized**: All agents use the latest Claude Sonnet 4.5 model for maximum performance
+- **Extended Reasoning**: Enabled thinking mode for deep analysis and problem-solving
+- **Flexible Permissions**: Each agent has customized permissions appropriate for its role
+- **English-First**: All documentation and examples in English for clarity and consistency
+
+## Usage
+
+After installation, these agents will be available in your Claude Code environment. You can switch between agents based on the task at hand:
+
+- Use `_arch` for architectural planning and system design
+- Use `_beagle` for research and information gathering
+- Use `_coder` for autonomous coding tasks
+- Use `_writer` for creative writing and documentation
+
+## Agents
+
 ## _arch — Senior Solution Architect
 
-Сеньор-архитектор, который смотрит на задачу как на набор вопросов. Не даёт сроки, оценивает сложность по четырём фреймворкам и разрезает проект на фазы с нулевым простоем.
+A senior architect who views every task as a set of questions. Doesn't give deadlines, assesses complexity across four frameworks, and slices projects into phases with zero downtime.
 
-Подходит к любой задаче через **Bare Minimum Filter**: каждый элемент проекта проверяется на критичность. Если что-то не жизненно важно для MVP — не попадает в первую фазу. Если можно сделать позже — делается позже. Если не требует архитектурного решения сейчас — переносится.
+Approaches any task through the **Bare Minimum Filter**: every project element is checked for criticality. If something isn't vital for the MVP, it doesn't make it to the first phase. If it can be done later, it gets done later. If it doesn't require an architectural solution now, it gets deferred.
 
-Разделяет проекты на размеры по T-shirt: от XS (простой CRUD с валидацией) до XL (полный редизайн домена с требованиями масштабируемости). Для каждого размера — своя глубина проработки, свои Use Case Points, свои факторы окружения.
+Splits projects into T-shirt sizes: from XS (simple CRUD with validation) to XL (full domain redesign with scalability requirements). For each size—its own depth of work, its own Use Case Points, its own environmental factors.
 
-Когда проект разбит на фазы, выдаёт JIRA-задачи с чётким форматом: приоритет, стори-пойнты, стратегия отката, нулевой простой, метрики мониторинга. Деплой — не просто "задеплоить", а выбор из шести стратегий: feature flags, canary rollout, blue-green, shadow mode, strangler pattern или dark launch.
+When the project is broken into phases, it outputs JIRA tasks in a clear format: priority, story points, rollback strategy, zero downtime, monitoring metrics. Deployment isn't just "deploy," but a choice from six strategies: feature flags, canary rollout, blue-green, shadow mode, strangler pattern, or dark launch.
 
 ## _beagle — Virtual Hunting Dog Researcher
 
-Получает запрос и следует за информационными трейлами: раскрывает связанные темы, находит синонимы, углубляется в смежные области. Расширяет круг поиска постепенно, каждый новый найденный факт ведёт к следующему запросу.
+Receives a query and follows information trails: uncovers related topics, finds synonyms, dives into adjacent areas. Gradually expands the search scope, where each newly discovered fact leads to the next query.
 
-Работает тихо. Не показывает промежуточные отчёты, не сообщает о прогрессе. Каждое утверждение обязательно подкреплено источником в формате `[N]`.
+Works quietly. Doesn't show intermediate reports, doesn't announce progress. Every statement is backed by a source in the format `[N]`.
 
-Внутри своего мышления декодирует запросы на экспертный язык, затем ветвит поиск: находит определения, применения, сравнения технологий. Построив карту связей между терминами, проверяет факты по разным источникам и собирает полную картину.
+Internally decodes queries into expert language, then branches the search: finds definitions, applications, technology comparisons. After building a map of connections between terms, it verifies facts across different sources and assembles the complete picture.
 
-Выдаёт три вещи. Основной вывод — краткий ответ на запрос с рекомендациями. Карту связей — дерево, где термины ведут к концепциям, концепции к технологиям, технологии к применениям. И оценку уверенности: High, Medium или Low. Отвечает на языке запроса. Вся внутренняя обработка проходит на английском.
+Delivers three things. Main conclusion—a brief answer to the query with recommendations. Connection map—a tree where terms lead to concepts, concepts to technologies, technologies to applications. And confidence assessment: High, Medium, or Low. Responds in the language of the query. All internal processing happens in English.
 
 ## _writer — Maximally Creative Agent
 
-Писатель с нарративной системой. Перед написанием каждого предложения проходит через шесть фаз мышления, где определяет, зачем текст существует, какой путь пройдёт читатель, где возникнут вопросы и где наступит инсайт.
+A writer with a narrative system. Before writing each sentence, goes through six phases of thinking, defining why the text exists, what path the reader will take, where questions will arise, and where the insight will strike.
 
-Вывод всегда на языке запроса, мышление — на английском. Итог читается как написанное вдумчивым человеком.
+Output is always in the language of the query, thinking is in English. The result reads as if written by a thoughtful person.
