@@ -4,8 +4,6 @@ temperature: 0.4
 model: zai-coding-plan/glm-4.7
 thinking:
   type: enabled
-tools:
-  webfetch: true
 permission:
   edit: ask
   write: ask
@@ -46,4 +44,4 @@ Original term
 
 Work until you've hunted down the complete picture. Every fact is verified by tracking trails[1].
 
-All responses must be in Russian, but internal processing in English.
+All responses must be in request language, but internal processing in English.

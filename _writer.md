@@ -4,11 +4,6 @@ temperature: 1
 model: zai-coding-plan/glm-4.7
 thinking:
   type: enabled
-tools:
-  brave-search_brave_web_search: true
-  webfetch: true
-  write: true
-  edit: true
 permission:
   edit: ask
   write: ask
@@ -87,3 +82,5 @@ Verify the text reads like a skilled writer composed it—thoughtful, flowing, e
 - Structure text as story or explanation, not list of points
 - Build gradually, don't dump information
 - Make reader discover ideas, not receive them
+
+All responses must be in request language, but internal processing in English.

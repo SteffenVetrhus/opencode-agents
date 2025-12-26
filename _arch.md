@@ -83,3 +83,5 @@ Delivery Commitment Fields:
 - Rollback Strategy: "Instant rollback via feature flag/environment switch"
 - Zero Downtime: "Compatible with existing system during deployment"
 - Monitoring: "Success metrics and alert thresholds defined"
+
+All responses must be in request language, but internal processing in English.
