@@ -1,6 +1,6 @@
 # OpenCode Agents
 
-A collection of specialized AI agents designed for Claude Code. Each agent is optimized for specific tasks using Claude's advanced reasoning capabilities.
+A collection of specialized AI agents designed for **Claude Code** and **Google Antigravity**. Each agent is optimized for specific tasks using Claude's or Gemini's advanced reasoning capabilities.
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/veschin/opencode-agents/refs/heads/main/logo.svg" width="512" alt="OpenCode Agents Logo">
@@ -12,7 +12,63 @@ A collection of specialized AI agents designed for Claude Code. Each agent is op
 
 ---
 
+## Choose Your Platform
+
+This repository supports two AI-powered IDEs:
+
+### 🔵 **Claude Code**
+Anthropic's official CLI for Claude, optimized for Claude Sonnet/Opus models.
+- Best for: Claude-first workflows, terminal-based development
+- Models: Claude Sonnet 4.5, Claude Opus 4.5
+
+### 🟢 **Google Antigravity**
+Google's new agentic development platform (announced Nov 2025).
+- Best for: Multi-model workflows, VS Code users, Gemini integration
+- Models: Gemini 3 Pro/Flash/Deep Think, Claude Sonnet 4.5, Claude Opus 4.5
+
+**Both platforms are fully supported!** Choose the installation method below based on your IDE.
+
+---
+
 ## Installation
+
+### Option A: Google Antigravity (Recommended for Windows)
+
+**✨ Easiest Method** - Antigravity auto-loads configuration from this repository structure.
+
+**Step 1:** Download Google Antigravity
+- Visit: https://antigravity.google/download
+- Install for Windows, macOS, or Linux
+- Launch Antigravity
+
+**Step 2:** Clone this repository to your project
+```bash
+git clone https://github.com/SteffenVetrhus/opencode-agents.git
+cd opencode-agents
+```
+
+**Step 3:** Open in Antigravity
+- File → Open Folder → Select `opencode-agents` directory
+- Antigravity will automatically detect:
+  - `.cursorrules` (base configuration)
+  - `.antigravity/rules.md` (agent definitions)
+  - `.gemini/GEMINI.md` (Gemini-specific optimizations)
+
+**Step 4:** Verify installation
+- Type `/agents` in the Antigravity chat
+- You should see: `/arch`, `/beagle`, `/coder`, `/writer`
+
+**Step 5:** Start using agents
+```
+/arch Help me design this system
+/beagle Research best practices for authentication
+/coder Implement user login feature
+/writer Create API documentation
+```
+
+---
+
+### Option B: Claude Code
 
 These agents are designed to work with Claude Code. Place the agent definition files in your Claude Code agents directory.
 
@@ -66,33 +122,65 @@ Simply clone this repository and copy the `_*.md` files to your Claude Code agen
 
 ## Features
 
-- **Claude Sonnet Optimized**: All agents use Claude Sonnet model for optimal performance
+- **Dual-Platform Support**: Works with both Claude Code and Google Antigravity
+- **Multi-Model Compatible**: Supports Claude Sonnet 4.5, Claude Opus 4.5, Gemini 3 Pro/Flash/Deep Think
 - **Extended Reasoning**: Enabled thinking mode for deep analysis and problem-solving
 - **Flexible Permissions**: Each agent has customized permissions appropriate for its role
 - **English-First**: All documentation and examples in English for clarity and consistency
 - **Platform Agnostic**: Works identically on Windows, macOS, and Linux
+- **Auto-Configuration**: Antigravity auto-loads settings; Claude Code uses direct installation
 
 ## Usage
 
-After installation, these agents will be available in your Claude Code environment.
+### Google Antigravity
 
-**To view and manage agents:**
+**View available agents:**
 ```
 /agents
 ```
 
-**To use a specific agent:**
-Just mention it in your request, for example:
+**Use workflow commands:**
+```
+/arch Help me design this microservices architecture
+/beagle Research React vs Vue performance benchmarks
+/coder Refactor this authentication module
+/writer Create user-facing documentation for this API
+```
+
+**Or mention agents explicitly:**
+- "Use the arch agent to assess complexity"
+- "Have beagle research best practices"
+- "Let coder implement this feature"
+- "Ask writer to document this"
+
+### Claude Code
+
+**View available agents:**
+```
+/agents
+```
+
+**Switch agents or mention explicitly:**
 - "Use the arch agent to design this system"
 - "Have the beagle agent research this topic"
 - "Use coder to implement this feature"
 - "Let writer create documentation for this"
 
-**Agent Selection Guide:**
-- `arch` - Architectural planning, complexity assessment, phased delivery
-- `beagle` - Research, information gathering, source verification
-- `coder` - Autonomous coding, debugging, refactoring, testing
-- `writer` - Creative writing, narrative documentation, content creation
+### Agent Selection Guide
+
+- **`arch`** - Architectural planning, complexity assessment (WBS, UCP, T-shirt sizing), phased delivery with JIRA tasks, deployment strategies
+- **`beagle`** - Research, information gathering, source verification, connection mapping, confidence assessment
+- **`coder`** - Autonomous coding, debugging, refactoring, testing, ReAct pattern, SOLID principles, TDD
+- **`writer`** - Creative writing, narrative documentation, 6-phase thinking system, content creation
+
+### Model Recommendations
+
+| Agent | Claude Code | Google Antigravity |
+|-------|-------------|-------------------|
+| arch | Claude Sonnet 4.5 | Gemini 3 Deep Think or Claude Opus 4.5 |
+| beagle | Claude Sonnet 4.5 | Gemini 3 Pro (best for web search) |
+| coder | Claude Sonnet 4.5 | Gemini 3 Pro or Claude Sonnet 4.5 |
+| writer | Claude Sonnet 4.5 | Claude Sonnet 4.5 or Gemini 3 Pro |
 
 ## Agents
 
@@ -126,7 +214,30 @@ Output is always in the language of the query, thinking is in English. The resul
 
 ## Troubleshooting
 
-### Windows-Specific Issues
+### Google Antigravity Issues
+
+**Agents not showing up:**
+1. Ensure you opened the folder containing `.cursorrules`
+2. Check that `.antigravity/rules.md` exists in the project root
+3. Restart Antigravity (File → Reload Window or Cmd/Ctrl + R)
+4. Check Antigravity console: View → Output → Select "Antigravity" from dropdown
+
+**Workflow commands not working:**
+- Make sure you're using `/arch`, `/beagle`, `/coder`, or `/writer` with a forward slash
+- Try explicit mention: "Use the arch agent to help with this"
+- Check Customizations: Click "..." → Customizations → Workflows
+
+**Model selection issues:**
+- To use Gemini: Settings → Agent → Model Selection → "Gemini 3 Pro"
+- To use Claude: Settings → Agent → Model Selection → "Claude Sonnet 4.5"
+- Set API keys: Settings → Agent → API Keys
+
+**Permission errors:**
+- Review-driven mode: AI asks before making changes (recommended)
+- Agent-driven mode: AI makes changes automatically (use with caution)
+- Settings → Agent → Development Mode
+
+### Claude Code Issues - Windows-Specific
 
 **Agents not appearing in `/agents` list:**
 1. Verify the files are in the correct directory:
@@ -166,6 +277,42 @@ Each agent has different permission settings. If an agent asks for permission un
 - `beagle` - Asks before editing/writing/bash commands
 - `coder` - Has full edit/write/read permissions
 - `writer` - Asks for edit/write, bash commands denied
+
+---
+
+## Repository Structure
+
+```
+opencode-agents/
+├── .cursorrules              # Antigravity base configuration
+├── .antigravity/
+│   └── rules.md             # All 4 agents as Antigravity workflows
+├── .gemini/
+│   └── GEMINI.md            # Gemini 3 model optimizations
+├── _arch.md                 # Claude Code agent: Architecture
+├── _beagle.md               # Claude Code agent: Research
+├── _coder.md                # Claude Code agent: Coding
+├── _writer.md               # Claude Code agent: Writing
+├── README.md                # This file
+├── Makefile                 # Sync utility
+└── logo.svg                 # Project logo
+```
+
+### File Usage by Platform
+
+| File | Claude Code | Google Antigravity |
+|------|-------------|-------------------|
+| `.cursorrules` | ❌ Not used | ✅ Auto-loaded |
+| `.antigravity/rules.md` | ❌ Not used | ✅ Auto-loaded |
+| `.gemini/GEMINI.md` | ❌ Not used | ✅ Optional (Gemini optimizations) |
+| `_arch.md` | ✅ Copy to `~/.claude/agents/` | ℹ️ Reference only |
+| `_beagle.md` | ✅ Copy to `~/.claude/agents/` | ℹ️ Reference only |
+| `_coder.md` | ✅ Copy to `~/.claude/agents/` | ℹ️ Reference only |
+| `_writer.md` | ✅ Copy to `~/.claude/agents/` | ℹ️ Reference only |
+
+**Summary:**
+- **Antigravity users**: Just clone and open the folder - everything auto-loads!
+- **Claude Code users**: Copy the `_*.md` files to your agents directory
 
 ---
 
