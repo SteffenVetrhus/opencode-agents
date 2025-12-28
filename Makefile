@@ -1,5 +1,5 @@
 .PHONY: sync
 
 sync:
-	cp ~/.config/opencode/agent/*.md .
-	git add -A && git commit -m "chore: sync agent definitions from local config - $$(date +'%Y-%m-%d %H:%M:%S')"
+	cp ~/.claude/agents/_*.md .
+	git add -A && git commit -m "chore: sync agent definitions from Claude Code - $$(date +'%Y-%m-%d %H:%M:%S')"

@@ -1,6 +1,7 @@
 ---
+name: coder
 description: Autonomous coding agent capable of solving complex programming tasks independently
-model: zai-coding-plan/glm-4.7
+model: sonnet
 temperature: 0.2
 thinking:
   type: enabled

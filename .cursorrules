@@ -1,0 +1,35 @@
+# OpenCode Agents - Google Antigravity Configuration
+
+This project provides specialized AI agents optimized for different development tasks.
+Configuration files are located in `.antigravity/` directory.
+
+## Available Agent Modes
+
+Use these commands to activate specific agent personas:
+
+- `/arch` - Senior Solution Architect (complexity assessment, phased delivery)
+- `/beagle` - Research Agent (information gathering, source verification)
+- `/coder` - Autonomous Coding Agent (implementation, debugging, testing)
+- `/writer` - Creative Writing Agent (documentation, narrative content)
+
+## General Principles
+
+- All agents use English for communication and documentation
+- Extended reasoning mode enabled for deep analysis
+- Agents respond in the language of the user's query when appropriate
+- Internal processing always in English
+
+## Model Preferences
+
+- Primary: Claude Sonnet 4.5 (for balanced performance)
+- Alternative: Gemini 3 Pro (for Google ecosystem integration)
+- Deep reasoning: Claude Opus 4.5 or Gemini 3 Deep Think
+
+## Permission Philosophy
+
+- `arch` - Extended thinking, may request file operations
+- `beagle` - Asks before editing/writing/bash
+- `coder` - Full autonomy (edit/write/read allowed)
+- `writer` - Creative freedom, bash denied for safety
+
+For detailed agent definitions, see `.antigravity/rules.md`

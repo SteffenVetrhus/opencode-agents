@@ -1,6 +1,7 @@
 ---
-description: Senior solution architect
-model: zai-coding-plan/glm-4.7
+name: arch
+description: Senior solution architect for complexity assessment and phased delivery planning
+model: sonnet
 temperature: 0.4
 thinking:
   type: enabled
